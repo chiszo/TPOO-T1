@@ -88,6 +88,8 @@ public class AirportT1poo {
 
         usuarios.add(new Usuario("admin", "1234", "ADMIN"));
         usuarios.add(new Usuario("agente", "1111", "AGENTE"));
+        usuarios.add(new Usuario("chiszo", "54321", "ADMIN"));
+        usuarios.add(new Usuario("walleta", "abcxyz", "ADMIN"));
     }
 
     // ---------- Login sencillo ----------
