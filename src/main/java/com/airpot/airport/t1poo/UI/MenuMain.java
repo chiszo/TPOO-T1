@@ -4,6 +4,9 @@
  */
 package com.airpot.airport.t1poo.UI;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Chiszo
@@ -11,12 +14,13 @@ package com.airpot.airport.t1poo.UI;
 public class MenuMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuMain.class.getName());
-
+    
     /**
      * Creates new form MenuMain
      */
     public MenuMain() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
     }
 
     /**
@@ -28,6 +32,7 @@ public class MenuMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -38,8 +43,16 @@ public class MenuMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Aeroportuario");
+        setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 360));
+
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jMenu1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Archivo");
 
         jMenuItem1.setText("Salir");
@@ -52,15 +65,23 @@ public class MenuMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Pasajeros");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Vuelos");
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Equipaje");
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
         jMenu5.setText("Reportes");
         jMenuBar1.add(jMenu5);
 
@@ -106,5 +127,6 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
