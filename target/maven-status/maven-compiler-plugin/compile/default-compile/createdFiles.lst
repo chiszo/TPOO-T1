@@ -1,2 +1,10 @@
+com\airpot\airport\t1poo\entidades\Usuario.class
+com\airpot\airport\t1poo\entidades\Vuelo.class
 com\airpot\airport\t1poo\UI\MenuMain.class
 com\airpot\airport\t1poo\UI\MenuMain$1.class
+com\airpot\airport\t1poo\entidades\Pasajero.class
+com\airpot\airport\t1poo\utils\Conexion.class
+com\airpot\airport\t1poo\entidades\Equipaje.class
+com\airpot\airport\t1poo\entidades\TarjetaEmbarque.class
+com\airpot\airport\t1poo\entidades\Puerta.class
+com\airpot\airport\t1poo\entidades\TipoDocumento.class

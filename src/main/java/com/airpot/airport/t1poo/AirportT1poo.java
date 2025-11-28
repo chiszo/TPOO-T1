@@ -2,6 +2,7 @@
 
 package com.airpot.airport.t1poo;
 import com.airpot.airport.t1poo.UI.MenuMain;
+import com.airpot.airport.t1poo.utils.Conexion;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -27,6 +28,8 @@ public class AirportT1poo {
         java.awt.EventQueue.invokeLater(() -> {
             new MenuMain().setVisible(true);
         });
+        
+        Conexion.getConexion();
         /*
         seedData();          // cargar datos de ejemplo
         Usuario log = login(); // login sencillo

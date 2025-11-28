@@ -1,8 +1,10 @@
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\AirportT1poo.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\Equipaje.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\Pasajero.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\Puerta.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\TarjetaEmbarque.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Equipaje.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Pasajero.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Puerta.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\TarjetaEmbarque.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\TipoDocumento.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Usuario.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Vuelo.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\MenuMain.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\Usuario.java
-D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\Vuelo.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\utils\Conexion.java

@@ -1,5 +1,5 @@
 
-package com.airpot.airport.t1poo;
+package com.airpot.airport.t1poo.entidades;
 
 
 public class Usuario {
