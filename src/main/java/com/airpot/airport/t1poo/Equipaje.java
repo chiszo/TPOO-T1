@@ -3,24 +3,44 @@ package com.airpot.airport.t1poo;
 
 
 public class Equipaje {
-     private String idPasajero;
-    private double pesoKg;
+    private int idequipaje;
+    private int idpasajero;
+    private double peso;
 
     public Equipaje() {}
 
-    public Equipaje(String idPasajero, double pesoKg) {
-        this.idPasajero = idPasajero;
-        this.pesoKg = pesoKg;
+    public Equipaje(int idequipaje, int idpasajero, double peso) {
+        this.idequipaje = idequipaje;
+        this.idpasajero = idpasajero;
+        this.peso = peso;
     }
 
-    public String getIdPasajero() { return idPasajero; }
-    public void setIdPasajero(String idPasajero) { this.idPasajero = idPasajero; }
+    public int getIdequipaje() {
+        return idequipaje;
+    }
 
-    public double getPesoKg() { return pesoKg; }
-    public void setPesoKg(double pesoKg) { this.pesoKg = pesoKg; }
+    public void setIdequipaje(int idequipaje) {
+        this.idequipaje = idequipaje;
+    }
+
+    public int getIdpasajero() {
+        return idpasajero;
+    }
+
+    public void setIdpasajero(int idpasajero) {
+        this.idpasajero = idpasajero;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
 
     @Override
     public String toString() {
-        return "Equipaje de " + idPasajero + " | " + pesoKg + " kg";
+        return "Equipaje{" + "idequipaje=" + idequipaje + ", idpasajero=" + idpasajero + ", peso=" + peso + '}';
     }
 }

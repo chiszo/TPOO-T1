@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class AirportT1poo {
 
-   
+   /*
+    
     // Colecciones principales
     static ArrayList<Pasajero> pasajeros = new ArrayList<>();
     static LinkedList<Vuelo> vuelos = new LinkedList<>();
@@ -20,13 +21,13 @@ public class AirportT1poo {
     static ArrayList<Equipaje> equipajes = new ArrayList<>();
 
     static Scanner sc = new Scanner(System.in);
-
+*/
     public static void main(String[] args) {
         
         java.awt.EventQueue.invokeLater(() -> {
             new MenuMain().setVisible(true);
         });
-
+        /*
         seedData();          // cargar datos de ejemplo
         Usuario log = login(); // login sencillo
         if (log == null) {
@@ -69,9 +70,9 @@ public class AirportT1poo {
                 case "11": listarPuertas(); break;
             }
         }
-        System.out.println("Adiós!");
+        System.out.println("Adiós!");*/
     }
-
+/*
     // ---------- Datos de ejemplo ----------
     static void seedData() {
         pasajeros.add(new Pasajero("P001", "Juan Pérez", "12345678"));
@@ -95,6 +96,7 @@ public class AirportT1poo {
         usuarios.add(new Usuario("agente", "1111", "AGENTE"));
         usuarios.add(new Usuario("chiszo", "54321", "ADMIN"));
         usuarios.add(new Usuario("walleta", "abcxyz", "ADMIN"));
+        
     }
 
     // ---------- Login sencillo ----------
@@ -151,6 +153,7 @@ public class AirportT1poo {
     } else {
         System.out.println("No se encontró pasajero con ese ID.");
     }
+    
 }
 
     // ---------- Vuelos ----------
@@ -318,5 +321,5 @@ static void eliminarVuelo() {
         }
         return null;
     }
-
+*/
 }

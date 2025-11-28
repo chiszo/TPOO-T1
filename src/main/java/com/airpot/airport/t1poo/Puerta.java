@@ -3,25 +3,35 @@ package com.airpot.airport.t1poo;
 
 
 public class Puerta {
-     private String codigo;
-    private boolean abierta;
+    private int idpuerta;
+    private boolean estado;
 
     public Puerta() {}
 
-    public Puerta(String codigo) {
-        this.codigo = codigo;
-        this.abierta = false; // por defecto cerrada
+    public Puerta(int idpuerta, boolean estado) {
+        this.idpuerta = idpuerta;
+        this.estado = estado;
+    }    
+    
+
+    public int getIdpuerta() {
+        return idpuerta;
     }
 
-    public String getCodigo() { return codigo; }
-    public void setCodigo(String codigo) { this.codigo = codigo; }
+    public void setIdpuerta(int idpuerta) {
+        this.idpuerta = idpuerta;
+    }
 
-    public boolean isAbierta() { return abierta; }
-    public void abrir() { this.abierta = true; }
-    public void cerrar() { this.abierta = false; }
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
     @Override
     public String toString() {
-        return "Puerta " + codigo + " [" + (abierta ? "ABIERTA" : "CERRADA") + "]";
+        return "Puerta{" + "idpuerta=" + idpuerta + ", estado=" + estado + '}';
     }
 }

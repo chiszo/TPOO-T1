@@ -3,43 +3,54 @@ package com.airpot.airport.t1poo;
 
 
 public class TarjetaEmbarque {
-      private String pasajeroId;
-    private String pasajeroNombre;
-    private String vueloCodigo;
+    private int idtarjetaEmbarque;
+    private int idpasajero;
+    private int idpuerta;
     private String asiento;
-    private String puerta;
 
     public TarjetaEmbarque() {}
 
-    public TarjetaEmbarque(String pasajeroId, String pasajeroNombre,
-                           String vueloCodigo, String asiento, String puerta) {
-        this.pasajeroId = pasajeroId;
-        this.pasajeroNombre = pasajeroNombre;
-        this.vueloCodigo = vueloCodigo;
+    public TarjetaEmbarque(int idtarjetaEmbarque, int idpasajero, int idpuerta, String asiento) {
+        this.idtarjetaEmbarque = idtarjetaEmbarque;
+        this.idpasajero = idpasajero;
+        this.idpuerta = idpuerta;
         this.asiento = asiento;
-        this.puerta = puerta;
     }
 
-    public String getPasajeroId() { return pasajeroId; }
-    public void setPasajeroId(String pasajeroId) { this.pasajeroId = pasajeroId; }
+    public int getIdtarjetaEmbarque() {
+        return idtarjetaEmbarque;
+    }
 
-    public String getPasajeroNombre() { return pasajeroNombre; }
-    public void setPasajeroNombre(String pasajeroNombre) { this.pasajeroNombre = pasajeroNombre; }
+    public void setIdtarjetaEmbarque(int idtarjetaEmbarque) {
+        this.idtarjetaEmbarque = idtarjetaEmbarque;
+    }
 
-    public String getVueloCodigo() { return vueloCodigo; }
-    public void setVueloCodigo(String vueloCodigo) { this.vueloCodigo = vueloCodigo; }
+    public int getIdpasajero() {
+        return idpasajero;
+    }
 
-    public String getAsiento() { return asiento; }
-    public void setAsiento(String asiento) { this.asiento = asiento; }
+    public void setIdpasajero(int idpasajero) {
+        this.idpasajero = idpasajero;
+    }
 
-    public String getPuerta() { return puerta; }
-    public void setPuerta(String puerta) { this.puerta = puerta; }
+    public int getIdpuerta() {
+        return idpuerta;
+    }
+
+    public void setIdpuerta(int idpuerta) {
+        this.idpuerta = idpuerta;
+    }
+
+    public String getAsiento() {
+        return asiento;
+    }
+
+    public void setAsiento(String asiento) {
+        this.asiento = asiento;
+    }
 
     @Override
     public String toString() {
-        return "BOARDING PASS | " + pasajeroNombre +
-               " | Vuelo " + vueloCodigo +
-               " | Asiento " + asiento +
-               " | Puerta " + puerta;
+        return "TarjetaEmbarque{" + "idtarjetaEmbarque=" + idtarjetaEmbarque + ", idpasajero=" + idpasajero + ", idpuerta=" + idpuerta + ", asiento=" + asiento + '}';
     }
 }
