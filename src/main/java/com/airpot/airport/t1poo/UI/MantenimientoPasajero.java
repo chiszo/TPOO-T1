@@ -215,7 +215,17 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
+         int id = Integer.parseInt(txtIdPasajero.getText().trim());
+         if (id==0){
+             JOptionPane.showMessageDialog(this, "Seleccione un pasajero");
+         } else {
+             int opcion=JOptionPane.showConfirmDialog(null, "¿Desea eliminar a este pasajero?", "Confirmación", JOptionPane.YES_NO_OPTION,  JOptionPane.QUESTION_MESSAGE);
+             if (opcion==JOptionPane.YES_OPTION){
+                pasajeroDAO.eliminar(id);
+                limpiarCampos();
+             }
+             
+         }
     }//GEN-LAST:event_btnEliminarActionPerformed
     private void limpiarCampos() {
     txtIdPasajero.setText("0");

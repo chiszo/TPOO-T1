@@ -13,7 +13,8 @@ import com.airpot.airport.t1poo.entidades.Pasajero;
 public interface PasajeroInterfazGestionDAO {
     public int registrar(Pasajero o);
     public int actualizar(Pasajero o);
-    public int eliminar(String codigo);
-    public Pasajero buscarPasajero(String codigo);
+    public int eliminar(int codigo);
+    public Pasajero buscarPasajero(int codigo);
     public ArrayList<Pasajero> listarPasajeros();
+    public ArrayList<Pasajero> listarPasajeros2();
 }

@@ -82,12 +82,33 @@ public class PasajeroGestionDAO implements PasajeroInterfazGestionDAO{
     }
 
     @Override
-    public int eliminar(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int eliminar(int codigo) {
+        int res = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			con = Conexion.getConexion();
+			String sql = "delete from pasajero where idpasajero = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, codigo);
+			res = pstm.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Error >>> en la instrucci�n SQL de eliminar " + e.getMessage());
+		}finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(con != null) pstm.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar la BD" + e2.getMessage());
+			}
+		}
+		
+		return res;
     }
 
     @Override
-    public Pasajero buscarPasajero(String codigo) {
+    public Pasajero buscarPasajero(int codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -115,6 +136,11 @@ public class PasajeroGestionDAO implements PasajeroInterfazGestionDAO{
         }
 
         return lista;
+    }
+
+    @Override
+    public ArrayList<Pasajero> listarPasajeros2() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
