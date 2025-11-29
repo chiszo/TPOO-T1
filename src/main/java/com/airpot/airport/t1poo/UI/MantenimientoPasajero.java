@@ -63,6 +63,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         cboTipoDocumento = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JButton();
         txtIdPasajero = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Pasajeros");
@@ -98,7 +99,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaPasajeros);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 520, 320));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 570, 320));
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 140, 40));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 140, 40));
 
@@ -128,6 +129,14 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtIdPasajero.setFocusable(false);
         jPanel1.add(txtIdPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 30, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -229,6 +238,10 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
              
          }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     private void limpiarCampos() {
     txtIdPasajero.setText("0");
     txtNombre.setText("");
@@ -265,6 +278,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<TipoDocumento> cboTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
