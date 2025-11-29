@@ -6,7 +6,10 @@ package com.airpot.airport.t1poo.UI;
 
 import javax.swing.ImageIcon;
 import com.airpot.airport.t1poo.entidades.TipoDocumento;
+import com.airpot.airport.t1poo.gestion.PasajeroGestionDAO;
 import com.airpot.airport.t1poo.gestion.TipoDocumentoGestionDAO;
+import com.airpot.airport.t1poo.entidades.Pasajero;
+import javax.swing.JOptionPane;
 /**
  *
  * @author RIPCONCIV
@@ -15,6 +18,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MantenimientoPasajero.class.getName());
     TipoDocumentoGestionDAO tipoDocumentosDAO = new TipoDocumentoGestionDAO();
+    PasajeroGestionDAO pasajeroDAO = new PasajeroGestionDAO();
     /**
      * Creates new form MantenimientoPasajero
      */
@@ -65,6 +69,11 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, 40));
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         btnEditar.setText("Editar");
@@ -121,6 +130,44 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String nombre = txtNombre.getText().trim();
+        String documento = txtDocumento.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        TipoDocumento tpdoc = (TipoDocumento) cboTipoDocumento.getSelectedItem();
+        int idTipoDocumento = tpdoc.getIdtipodocumento();
+    // 2. Validaciones
+    if (nombre.isEmpty() || documento.isEmpty() || telefono.isEmpty() || idTipoDocumento == 0) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    // 3. Crear objeto pasajero
+        Pasajero p = new Pasajero();
+        p.setNombre(nombre);
+        p.setDocumento(documento);
+        p.setTelefono(telefono);
+        p.setIdtipodocumento(idTipoDocumento);
+
+    // 4. Llamar al DAO para guardar
+        int ok = pasajeroDAO.registrar(p);
+
+    // 5. Resultado
+        if (ok!=0) {
+        JOptionPane.showMessageDialog(this, "Pasajero registrado correctamente.");
+        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
+        limpiarCampos();        // limpia los campos
+        } else {
+        JOptionPane.showMessageDialog(this, "Error al guardar pasajero.");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void limpiarCampos() {
+    txtNombre.setText("");
+    txtDocumento.setText("");
+    txtTelefono.setText("");
+    cboTipoDocumento.setSelectedIndex(0);
+}
+
     /**
      * @param args the command line arguments
      */
@@ -164,4 +211,5 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
+    
 }

@@ -2,6 +2,7 @@ com\airpot\airport\t1poo\entidades\Usuario.class
 com\airpot\airport\t1poo\UI\MenuMain.class
 com\airpot\airport\t1poo\interfaces\UsuarioInterfazGestionDAO.class
 com\airpot\airport\t1poo\UI\MenuMain$1.class
+com\airpot\airport\t1poo\UI\MantenimientoPasajero$1.class
 com\airpot\airport\t1poo\gestion\TipoDocumentoGestionDAO.class
 com\airpot\airport\t1poo\interfaces\EquipajeInterfazGestionDAO.class
 com\airpot\airport\t1poo\UI\login.class
@@ -15,6 +16,7 @@ com\airpot\airport\t1poo\UI\MantenimientoPasajero.class
 com\airpot\airport\t1poo\entidades\Vuelo.class
 com\airpot\airport\t1poo\gestion\PasajeroGestionDAO.class
 com\airpot\airport\t1poo\interfaces\PuertaInterfazGestionDAO.class
+com\airpot\airport\t1poo\UI\MantenimientoPasajero$2.class
 com\airpot\airport\t1poo\gestion\TarjetaGestionDAO.class
 com\airpot\airport\t1poo\interfaces\PasajeroInterfazGestionDAO.class
 com\airpot\airport\t1poo\gestion\UsuarioGestionDAO.class
