@@ -14,6 +14,7 @@ public class MenuMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuMain.class.getName());
     
+    
     /**
      * Creates new form MenuMain
      */
@@ -21,6 +22,7 @@ public class MenuMain extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
         this.setResizable(false);
+        labelNombre.setText("Hola, " +login.usuario.getNombre());
     }
 
     /**
@@ -33,6 +35,7 @@ public class MenuMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        labelNombre = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -48,6 +51,11 @@ public class MenuMain extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelNombre.setText("Hola!");
+        jPanel2.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 360));
 
         jMenuBar1.setBackground(new java.awt.Color(0, 102, 102));
@@ -107,7 +115,7 @@ public class MenuMain extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void MnMantenimientoPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnMantenimientoPasajeroActionPerformed
@@ -157,5 +165,6 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private static javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
 }

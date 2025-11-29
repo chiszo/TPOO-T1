@@ -9,7 +9,9 @@ import com.airpot.airport.t1poo.entidades.TipoDocumento;
 import com.airpot.airport.t1poo.gestion.PasajeroGestionDAO;
 import com.airpot.airport.t1poo.gestion.TipoDocumentoGestionDAO;
 import com.airpot.airport.t1poo.entidades.Pasajero;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author RIPCONCIV
@@ -26,6 +28,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
         cargarTipoDocumento();
+        cargarTablaPasajeros();
     }
     private void cargarTipoDocumento() {
     cboTipoDocumento.removeAllItems();
@@ -50,7 +53,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaPasajeros = new javax.swing.JTable();
         txtTelefono = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -84,7 +87,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPasajeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,7 +98,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaPasajeros);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 520, 320));
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 140, 40));
@@ -127,7 +130,37 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        String nombre = txtNombre.getText().trim();
+        String documento = txtDocumento.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        TipoDocumento tpdoc = (TipoDocumento) cboTipoDocumento.getSelectedItem();
+        int idTipoDocumento = tpdoc.getIdtipodocumento();
+        int id =0;
+    // 2. Validaciones
+    if (nombre.isEmpty() || documento.isEmpty() || telefono.isEmpty() || idTipoDocumento == 0) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    // 3. Crear objeto pasajero
+        Pasajero p = new Pasajero();
+        p.setIdpasajero(id);
+        p.setNombre(nombre);
+        p.setDocumento(documento);
+        p.setTelefono(telefono);
+        p.setIdtipodocumento(idTipoDocumento);
+
+    // 4. Llamar al DAO para guardar
+        int ok = pasajeroDAO.actualizar(p);
+
+    // 5. Resultado
+        if (ok!=0) {
+        JOptionPane.showMessageDialog(this, "Pasajero actualizado correctamente.");
+        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
+        limpiarCampos();        // limpia los campos
+        } else {
+        JOptionPane.showMessageDialog(this, "Error al actualizar pasajero.");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -205,11 +238,30 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaPasajeros;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    
+   public void cargarTablaPasajeros() {
+
+    String columnas[] = {"ID", "Nombre", "Documento", "Teléfono","idtipodocumento"};
+       DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+       ArrayList<Pasajero> lista = pasajeroDAO.listarPasajeros();
+
+    for (Pasajero p : lista) {
+        Object fila[] = {
+            p.getIdpasajero(),
+            p.getNombre(),
+            p.getDocumento(),
+            p.getTelefono(),
+            p.getIdtipodocumento()
+        };
+        modelo.addRow(fila);
+    }
+
+    tablaPasajeros.setModel(modelo);
+} 
 }

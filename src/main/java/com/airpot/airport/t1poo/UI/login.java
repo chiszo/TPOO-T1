@@ -16,7 +16,7 @@ public class login extends javax.swing.JFrame {
     
     UsuarioGestionDAO guserDAO = new UsuarioGestionDAO();
     
-    public static Usuario user= new Usuario();
+    public static Usuario usuario= new Usuario();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
 
     /**
@@ -155,7 +155,7 @@ private void validarAcceso() {
     if (usuarioEncontrado != null) {
         // Acceso correcto
         JOptionPane.showMessageDialog(this, "Bienvenido");
-
+        usuario=usuarioEncontrado;
         // Abres la siguiente ventana
         MenuMain mp = new MenuMain();
         mp.setVisible(true);
