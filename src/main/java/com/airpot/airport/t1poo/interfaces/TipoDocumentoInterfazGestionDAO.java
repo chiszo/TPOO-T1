@@ -10,6 +10,6 @@ import java.util.ArrayList;
  *
  * @author RIPCONCIV
  */
-public interface TipoDocumentoGestionDAO {
+public interface TipoDocumentoInterfazGestionDAO {
     public ArrayList<TipoDocumento> listarTipoDocumentos();
 }

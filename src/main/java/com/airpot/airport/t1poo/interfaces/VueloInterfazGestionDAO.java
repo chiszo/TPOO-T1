@@ -8,6 +8,6 @@ package com.airpot.airport.t1poo.interfaces;
  *
  * @author RIPCONCIV
  */
-public interface EquipajeGestionDAO {
+public interface VueloInterfazGestionDAO {
     
 }

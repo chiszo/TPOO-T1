@@ -10,7 +10,7 @@ import com.airpot.airport.t1poo.entidades.Pasajero;
  *
  * @author RIPCONCIV
  */
-public interface PasajeroGestionDAO {
+public interface PasajeroInterfazGestionDAO {
     public int registrar(Pasajero o);
     public int actualizar(Pasajero o);
     public int eliminar(String codigo);

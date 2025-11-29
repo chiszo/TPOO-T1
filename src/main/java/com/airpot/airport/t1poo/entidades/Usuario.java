@@ -6,15 +6,25 @@ public class Usuario {
     private String username;
     private String password;
     private String rol;
+    private String nombre;
 
     public Usuario() {}
 
-    public Usuario(String username, String password, String rol) {
+    public Usuario(String username, String password, String rol, String nombre) {
         this.username = username;
         this.password = password;
         this.rol = rol;
+        this.nombre=nombre;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
@@ -26,6 +36,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return username + " (" + rol + ")";
+        return "Usuario{" + "username=" + username + ", password=" + password + ", rol=" + rol + ", nombre=" + nombre + '}';
     }
 }

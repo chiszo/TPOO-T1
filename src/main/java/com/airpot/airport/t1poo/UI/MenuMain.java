@@ -4,7 +4,7 @@
  */
 package com.airpot.airport.t1poo.UI;
 
-import java.awt.Image;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,6 +21,7 @@ public class MenuMain extends javax.swing.JFrame {
     public MenuMain() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
+        this.setResizable(false);
     }
 
     /**
@@ -37,6 +38,7 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MnMantenimientoPasajero = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -49,12 +51,15 @@ public class MenuMain extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 360));
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setBackground(new java.awt.Color(0, 102, 102));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
         jMenu1.setBackground(new java.awt.Color(0, 0, 0));
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Archivo");
 
+        jMenuItem1.setBackground(new java.awt.Color(0, 102, 102));
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setText("Salir");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +73,17 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu2.setBackground(new java.awt.Color(0, 0, 0));
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Pasajeros");
+
+        MnMantenimientoPasajero.setBackground(new java.awt.Color(0, 102, 102));
+        MnMantenimientoPasajero.setForeground(new java.awt.Color(255, 255, 255));
+        MnMantenimientoPasajero.setText("Mantenimiento");
+        MnMantenimientoPasajero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnMantenimientoPasajeroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnMantenimientoPasajero);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setBackground(new java.awt.Color(0, 0, 0));
@@ -95,6 +111,14 @@ public class MenuMain extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void MnMantenimientoPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnMantenimientoPasajeroActionPerformed
+        java.awt.EventQueue.invokeLater(() -> {
+            MantenimientoPasajero mantepasajero = new MantenimientoPasajero();
+            mantepasajero.setVisible(true);
+                    }
+        );
+    }//GEN-LAST:event_MnMantenimientoPasajeroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,10 +141,15 @@ public class MenuMain extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MenuMain().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            MenuMain menumain = new MenuMain();
+            menumain.setVisible(true);
+                    }
+        );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MnMantenimientoPasajero;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -128,6 +157,6 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel2;
+    private static javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

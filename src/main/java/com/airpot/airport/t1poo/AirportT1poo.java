@@ -2,6 +2,7 @@
 
 package com.airpot.airport.t1poo;
 import com.airpot.airport.t1poo.UI.MenuMain;
+import com.airpot.airport.t1poo.UI.login;
 import com.airpot.airport.t1poo.utils.Conexion;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class AirportT1poo {
     public static void main(String[] args) {
         
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuMain().setVisible(true);
+            new login().setVisible(true);
         });
         
         Conexion.getConexion();
