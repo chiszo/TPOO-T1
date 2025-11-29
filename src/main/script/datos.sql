@@ -1,4 +1,4 @@
-
+use aeropuerto;
 -- Insertar en TipoDocumento
 INSERT INTO TipoDocumento (descripcion) VALUES
 ('DNI'), ('Pasaporte'), ('Carnet Extranjería'), ('Licencia'), ('ID Militar'),
@@ -41,14 +41,14 @@ INSERT INTO Equipaje (idpasajero, peso) VALUES
 (6, 17.0), (7, 16.4), (8, 21.2), (9, 14.9), (10, 23.0);
 
 -- Insertar en Usuario
-INSERT INTO Usuario (username, password, rol) VALUES
-('admin', 'admin123', 'Administrador'),
-('juanp', 'passjuan', 'Cliente'),
-('marial', 'passmaria', 'Cliente'),
-('carlosr', 'passcarlos', 'Cliente'),
-('anatorres', 'passana', 'Cliente'),
-('luisg', 'passluis', 'Cliente'),
-('sofiac', 'passsofia', 'Cliente'),
-('pedros', 'passpedro', 'Cliente'),
-('lauraf', 'passlaura', 'Cliente'),
-('diegom', 'passdiego', 'Cliente');
+INSERT INTO Usuario (username, password, rol, nombre) VALUES
+('admin', 'admin123', 'Administrador', 'Admin'),
+('juanp', 'passjuan', 'Cliente', 'Juan'),
+('marial', 'passmaria', 'Cliente', 'Maria'),
+('carlosr', 'passcarlos', 'Cliente', 'Carlos'),
+('anatorres', 'passana', 'Cliente', 'Ana'),
+('luisg', 'passluis', 'Cliente', 'Luis'),
+('sofiac', 'passsofia', 'Cliente', 'Sofia'),
+('pedros', 'passpedro', 'Cliente', 'Pedro'),
+('lauraf', 'passlaura', 'Cliente', 'Laura'),
+('diegom', 'passdiego', 'Cliente', 'Diego');

@@ -56,5 +56,6 @@ CREATE TABLE TarjetaEmbarque (
 CREATE TABLE Usuario (
     username VARCHAR(50) PRIMARY KEY,
     password VARCHAR(255) NOT NULL,
-    rol VARCHAR(50) NOT NULL
+    rol VARCHAR(50) NOT NULL,
+    nombre VARCHAR(50) NOT NULL
 );

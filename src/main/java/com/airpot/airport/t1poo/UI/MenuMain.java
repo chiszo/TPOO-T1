@@ -4,7 +4,6 @@
  */
 package com.airpot.airport.t1poo.UI;
 
-import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
