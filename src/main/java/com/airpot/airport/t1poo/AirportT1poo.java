@@ -7,6 +7,7 @@ import com.airpot.airport.t1poo.utils.Conexion;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
+import javax.swing.UIManager;
 
 public class AirportT1poo {
 
@@ -31,6 +32,12 @@ public class AirportT1poo {
         });
         
         Conexion.getConexion();
+        
+        try {
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme());
+        } catch (Exception ex) {
+            System.err.println("Error al aplicar el tema");
+        }
         /*
         seedData();          // cargar datos de ejemplo
         Usuario log = login(); // login sencillo

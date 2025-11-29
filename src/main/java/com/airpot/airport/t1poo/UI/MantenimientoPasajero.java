@@ -21,6 +21,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MantenimientoPasajero.class.getName());
     TipoDocumentoGestionDAO tipoDocumentosDAO = new TipoDocumentoGestionDAO();
     PasajeroGestionDAO pasajeroDAO = new PasajeroGestionDAO();
+    private int idpasajero=0;
     /**
      * Creates new form MantenimientoPasajero
      */
@@ -29,6 +30,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
         cargarTipoDocumento();
         cargarTablaPasajeros();
+        txtIdPasajero.setVisible(false);
     }
     private void cargarTipoDocumento() {
     cboTipoDocumento.removeAllItems();
@@ -62,6 +64,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboTipoDocumento = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JButton();
+        txtIdPasajero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenimiento Pasajeros");
@@ -98,6 +101,11 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaPasajeros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPasajerosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaPasajeros);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 520, 320));
@@ -121,6 +129,10 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
 
         btnEliminar.setText("Eliminar");
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
+
+        txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIdPasajero.setFocusable(false);
+        jPanel1.add(txtIdPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -194,6 +206,19 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al guardar pasajero.");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void tablaPasajerosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPasajerosMouseClicked
+      int fila = tablaPasajeros.getSelectedRow();
+        if (fila >= 0) {
+            txtIdPasajero.setText(tablaPasajeros.getValueAt(fila, 0).toString());
+            txtNombre.setText(tablaPasajeros.getValueAt(fila, 1).toString());
+            txtDocumento.setText(tablaPasajeros.getValueAt(fila, 2).toString());
+            txtTelefono.setText(tablaPasajeros.getValueAt(fila, 3).toString());
+            cboTipoDocumento.setSelectedIndex(
+                    Integer.parseInt(tablaPasajeros.getValueAt(fila, 4).toString())-1
+                    );
+        }
+    }//GEN-LAST:event_tablaPasajerosMouseClicked
     private void limpiarCampos() {
     txtNombre.setText("");
     txtDocumento.setText("");
@@ -240,6 +265,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaPasajeros;
     private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtIdPasajero;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
