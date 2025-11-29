@@ -21,7 +21,6 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MantenimientoPasajero.class.getName());
     TipoDocumentoGestionDAO tipoDocumentosDAO = new TipoDocumentoGestionDAO();
     PasajeroGestionDAO pasajeroDAO = new PasajeroGestionDAO();
-    private int idpasajero=0;
     /**
      * Creates new form MantenimientoPasajero
      */
@@ -53,7 +52,6 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtDocumento = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaPasajeros = new javax.swing.JTable();
         txtTelefono = new javax.swing.JTextField();
@@ -66,7 +64,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         txtIdPasajero = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Pasajeros");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,15 +78,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
         tablaPasajeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,7 +118,12 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         jPanel1.add(cboTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 140, 40));
 
         btnEliminar.setText("Eliminar");
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtIdPasajero.setFocusable(false);
@@ -141,14 +136,42 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        int id = Integer.parseInt(txtIdPasajero.getText().trim());
         String nombre = txtNombre.getText().trim();
         String documento = txtDocumento.getText().trim();
         String telefono = txtTelefono.getText().trim();
         TipoDocumento tpdoc = (TipoDocumento) cboTipoDocumento.getSelectedItem();
         int idTipoDocumento = tpdoc.getIdtipodocumento();
-        int id =0;
-    // 2. Validaciones
+        if(id==0){
+            // 2. Validaciones
+    if (nombre.isEmpty() || documento.isEmpty() || telefono.isEmpty() || idTipoDocumento == 0) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    // 3. Crear objeto pasajero
+        Pasajero p = new Pasajero();
+        p.setNombre(nombre);
+        p.setDocumento(documento);
+        p.setTelefono(telefono);
+        p.setIdtipodocumento(idTipoDocumento);
+
+    // 4. Llamar al DAO para guardar
+        int ok = pasajeroDAO.registrar(p);
+
+    // 5. Resultado
+        if (ok!=0) {
+        JOptionPane.showMessageDialog(this, "Pasajero registrado correctamente.");
+        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
+        limpiarCampos();        // limpia los campos
+        } else {
+        JOptionPane.showMessageDialog(this, "Error al guardar pasajero.");
+        }
+        cargarTablaPasajeros();
+        }
+        else {
+                // 2. Validaciones
     if (nombre.isEmpty() || documento.isEmpty() || telefono.isEmpty() || idTipoDocumento == 0) {
         JOptionPane.showMessageDialog(this, "Complete todos los campos.");
         return;
@@ -173,37 +196,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         } else {
         JOptionPane.showMessageDialog(this, "Error al actualizar pasajero.");
         }
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        String nombre = txtNombre.getText().trim();
-        String documento = txtDocumento.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-        TipoDocumento tpdoc = (TipoDocumento) cboTipoDocumento.getSelectedItem();
-        int idTipoDocumento = tpdoc.getIdtipodocumento();
-    // 2. Validaciones
-    if (nombre.isEmpty() || documento.isEmpty() || telefono.isEmpty() || idTipoDocumento == 0) {
-        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
-        return;
-    }
-
-    // 3. Crear objeto pasajero
-        Pasajero p = new Pasajero();
-        p.setNombre(nombre);
-        p.setDocumento(documento);
-        p.setTelefono(telefono);
-        p.setIdtipodocumento(idTipoDocumento);
-
-    // 4. Llamar al DAO para guardar
-        int ok = pasajeroDAO.registrar(p);
-
-    // 5. Resultado
-        if (ok!=0) {
-        JOptionPane.showMessageDialog(this, "Pasajero registrado correctamente.");
-        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
-        limpiarCampos();        // limpia los campos
-        } else {
-        JOptionPane.showMessageDialog(this, "Error al guardar pasajero.");
+        cargarTablaPasajeros();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -219,7 +212,13 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
                     );
         }
     }//GEN-LAST:event_tablaPasajerosMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
     private void limpiarCampos() {
+    txtIdPasajero.setText("0");
     txtNombre.setText("");
     txtDocumento.setText("");
     txtTelefono.setText("");
@@ -252,7 +251,6 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<TipoDocumento> cboTipoDocumento;
