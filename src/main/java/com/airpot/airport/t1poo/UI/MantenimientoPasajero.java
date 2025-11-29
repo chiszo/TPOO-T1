@@ -222,6 +222,8 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
              int opcion=JOptionPane.showConfirmDialog(null, "¿Desea eliminar a este pasajero?", "Confirmación", JOptionPane.YES_NO_OPTION,  JOptionPane.QUESTION_MESSAGE);
              if (opcion==JOptionPane.YES_OPTION){
                 pasajeroDAO.eliminar(id);
+                JOptionPane.showMessageDialog(this, "Pasajero eliminado correctamente.");
+                cargarTablaPasajeros();
                 limpiarCampos();
              }
              
