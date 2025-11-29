@@ -1,9 +1,9 @@
 
 
 package com.airpot.airport.t1poo;
-import com.airpot.airport.t1poo.UI.MenuMain;
 import com.airpot.airport.t1poo.UI.login;
 import com.airpot.airport.t1poo.utils.Conexion;
+import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -26,18 +26,16 @@ public class AirportT1poo {
     static Scanner sc = new Scanner(System.in);
 */
     public static void main(String[] args) {
-        
+        try {
+            FlatCyanLightIJTheme.setup();
+        } catch (Exception ex) {
+            System.err.println("Error al aplicar el tema");
+        }
         java.awt.EventQueue.invokeLater(() -> {
             new login().setVisible(true);
         });
         
         Conexion.getConexion();
-        
-        try {
-            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme());
-        } catch (Exception ex) {
-            System.err.println("Error al aplicar el tema");
-        }
         /*
         seedData();          // cargar datos de ejemplo
         Usuario log = login(); // login sencillo
