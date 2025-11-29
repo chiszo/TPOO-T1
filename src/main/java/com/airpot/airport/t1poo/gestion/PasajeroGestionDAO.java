@@ -5,6 +5,7 @@
 package com.airpot.airport.t1poo.gestion;
 
 import com.airpot.airport.t1poo.entidades.Pasajero;
+import com.airpot.airport.t1poo.entidades.PasajeroListado;
 import com.airpot.airport.t1poo.interfaces.PasajeroInterfazGestionDAO;
 import com.airpot.airport.t1poo.utils.Conexion;
 import java.sql.Connection;
@@ -109,7 +110,35 @@ public class PasajeroGestionDAO implements PasajeroInterfazGestionDAO{
 
     @Override
     public Pasajero buscarPasajero(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       Pasajero p = null;
+		PreparedStatement pstm = null;
+		Connection con = null;
+		ResultSet res = null;
+		try {
+			con = Conexion.getConexion();
+			String sql = "select * from pasajero where idpasajero = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, codigo);
+			res = pstm.executeQuery();
+			if (res.next()) {
+				p = new Pasajero(res.getInt(1), res.getString(2), res.getString(3), res.getString(4),
+						res.getInt(5));
+			}
+		} catch (Exception e) {
+			System.out.println(">>Error en la instrucción consultar pasajero " + e.getMessage());
+		} finally {
+			try {
+				if (pstm != null)
+					pstm.close();
+				if (res != null)
+					res.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e2) {
+				System.out.println("Error al cerrar la bd " + e2.getMessage());
+			}
+		}
+		return p;
     }
 
     @Override
@@ -139,8 +168,29 @@ public class PasajeroGestionDAO implements PasajeroInterfazGestionDAO{
     }
 
     @Override
-    public ArrayList<Pasajero> listarPasajeros2() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<PasajeroListado> listarPasajeros2() {
+              ArrayList<PasajeroListado> lista = new ArrayList<>();
+
+        String sql = "CALL sp_listarpasajero()";
+
+        try (Connection con = Conexion.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(new PasajeroListado(
+                    rs.getInt("idpasajero"),
+                    rs.getString("nombre"),
+                    rs.getString("documento"),
+                    rs.getString("telefono"),
+                    rs.getString("descripcion"))
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error listando los pasajeros: " + e.getMessage());
+        }
+
+        return lista;
     }
     
 }

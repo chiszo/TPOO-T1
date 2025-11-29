@@ -6,6 +6,7 @@ package com.airpot.airport.t1poo.interfaces;
 
 import java.util.ArrayList;
 import com.airpot.airport.t1poo.entidades.Pasajero;
+import com.airpot.airport.t1poo.entidades.PasajeroListado;
 /**
  *
  * @author RIPCONCIV
@@ -16,5 +17,5 @@ public interface PasajeroInterfazGestionDAO {
     public int eliminar(int codigo);
     public Pasajero buscarPasajero(int codigo);
     public ArrayList<Pasajero> listarPasajeros();
-    public ArrayList<Pasajero> listarPasajeros2();
+    public ArrayList<PasajeroListado> listarPasajeros2();
 }

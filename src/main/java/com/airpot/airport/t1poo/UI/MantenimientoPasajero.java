@@ -9,6 +9,7 @@ import com.airpot.airport.t1poo.entidades.TipoDocumento;
 import com.airpot.airport.t1poo.gestion.PasajeroGestionDAO;
 import com.airpot.airport.t1poo.gestion.TipoDocumentoGestionDAO;
 import com.airpot.airport.t1poo.entidades.Pasajero;
+import com.airpot.airport.t1poo.entidades.PasajeroListado;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +31,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         cargarTipoDocumento();
         cargarTablaPasajeros();
         txtIdPasajero.setVisible(false);
+        this.setResizable(false);
     }
     private void cargarTipoDocumento() {
     cboTipoDocumento.removeAllItems();
@@ -73,13 +75,14 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, 40));
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar_1.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         tablaPasajeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,13 +121,14 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         cboTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>());
         jPanel1.add(cboTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 140, 40));
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
         txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtIdPasajero.setFocusable(false);
@@ -212,12 +216,14 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private void tablaPasajerosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPasajerosMouseClicked
       int fila = tablaPasajeros.getSelectedRow();
         if (fila >= 0) {
-            txtIdPasajero.setText(tablaPasajeros.getValueAt(fila, 0).toString());
-            txtNombre.setText(tablaPasajeros.getValueAt(fila, 1).toString());
-            txtDocumento.setText(tablaPasajeros.getValueAt(fila, 2).toString());
-            txtTelefono.setText(tablaPasajeros.getValueAt(fila, 3).toString());
+            int id = Integer.parseInt(tablaPasajeros.getValueAt(fila, 0).toString());
+            Pasajero pasajero1=pasajeroDAO.buscarPasajero(id);
+            txtIdPasajero.setText(String.valueOf(pasajero1.getIdpasajero()));
+            txtNombre.setText(pasajero1.getNombre());
+            txtDocumento.setText(pasajero1.getDocumento());
+            txtTelefono.setText(pasajero1.getTelefono());
             cboTipoDocumento.setSelectedIndex(
-                    Integer.parseInt(tablaPasajeros.getValueAt(fila, 4).toString())-1
+                    pasajero1.getIdtipodocumento()-1
                     );
         }
     }//GEN-LAST:event_tablaPasajerosMouseClicked
@@ -296,18 +302,18 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
 
    public void cargarTablaPasajeros() {
 
-    String columnas[] = {"ID", "Nombre", "Documento", "Teléfono","idtipodocumento"};
+    String columnas[] = {"ID", "Nombre","Tipo-Documento" ,"Documento", "Teléfono"};
        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
 
-       ArrayList<Pasajero> lista = pasajeroDAO.listarPasajeros();
+       ArrayList<PasajeroListado> lista = pasajeroDAO.listarPasajeros2();
 
-    for (Pasajero p : lista) {
+    for (PasajeroListado p : lista) {
         Object fila[] = {
             p.getIdpasajero(),
             p.getNombre(),
+            p.getTipodocumento(),
             p.getDocumento(),
-            p.getTelefono(),
-            p.getIdtipodocumento()
+            p.getTelefono()
         };
         modelo.addRow(fila);
     }
