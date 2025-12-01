@@ -25,6 +25,7 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -150,7 +151,10 @@ private void validarAcceso() {
     }
 
     // Llama al DAO
-    Usuario usuarioEncontrado = guserDAO.inicioSesion(user, clave);
+    //Usuario usuarioEncontrado = guserDAO.inicioSesion(user, clave);
+    
+    //Usuario colocado por Jair para facilitar el acceso sin necesidad de con DB MySQL!
+    Usuario usuarioEncontrado = new Usuario("admin","admin","user","admin");
 
     if (usuarioEncontrado != null) {
         // Acceso correcto

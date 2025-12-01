@@ -23,6 +23,7 @@ public class MenuMain extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/avion.png")).getImage());
         this.setResizable(false);
         labelNombre.setText("Hola, " +login.usuario.getNombre());
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -43,6 +44,8 @@ public class MenuMain extends javax.swing.JFrame {
         MnMantenimientoPasajero = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,6 +106,18 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu4.setText("Equipaje");
         jMenuBar1.add(jMenu4);
 
+        jMenu6.setText("Tarjeta Embarque");
+
+        jMenuItem2.setText("Mantenimiento");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu6);
+
         jMenu5.setBackground(new java.awt.Color(0, 0, 0));
         jMenu5.setForeground(new java.awt.Color(255, 255, 255));
         jMenu5.setText("Reportes");
@@ -125,6 +140,13 @@ public class MenuMain extends javax.swing.JFrame {
                     }
         );
     }//GEN-LAST:event_MnMantenimientoPasajeroActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        MantenimientoTarjEmbq ventana = new MantenimientoTarjEmbq();
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +184,10 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private static javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
