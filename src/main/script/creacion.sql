@@ -59,3 +59,19 @@ CREATE TABLE Usuario (
     rol VARCHAR(50) NOT NULL,
     nombre VARCHAR(50) NOT NULL
 );
+
+DELIMITER //
+
+CREATE PROCEDURE sp_listarpasajero()
+BEGIN
+    SELECT 
+        p.idpasajero,
+        p.nombre,
+        p.documento,
+        p.telefono,
+        c.tipodocumento
+    FROM pasajero p
+    INNER JOIN tipodocumento c ON c.idtipodocumento = p.idtipodocumento;
+END //
+
+DELIMITER ;

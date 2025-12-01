@@ -37,6 +37,8 @@ public class MenuMain extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         labelNombre = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -45,7 +47,7 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mantTarjEmbqMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,12 +59,15 @@ public class MenuMain extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNombre.setText("Hola!");
-        jPanel2.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel2.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 360));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 960, 60));
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 102, 102));
-        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user-interface_1.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 120));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 470));
 
         jMenu1.setBackground(new java.awt.Color(0, 0, 0));
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,13 +113,13 @@ public class MenuMain extends javax.swing.JFrame {
 
         jMenu6.setText("Tarjeta Embarque");
 
-        jMenuItem2.setText("Mantenimiento");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mantTarjEmbqMenuItem.setText("Mantenimiento");
+        mantTarjEmbqMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mantTarjEmbqMenuItemActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem2);
+        jMenu6.add(mantTarjEmbqMenuItem);
 
         jMenuBar1.add(jMenu6);
 
@@ -141,12 +146,12 @@ public class MenuMain extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_MnMantenimientoPasajeroActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mantTarjEmbqMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantTarjEmbqMenuItemActionPerformed
         // TODO add your handling code here:
         MantenimientoTarjEmbq ventana = new MantenimientoTarjEmbq();
         ventana.setLocationRelativeTo(this);
         ventana.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mantTarjEmbqMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +184,7 @@ public class MenuMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MnMantenimientoPasajero;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -187,8 +193,9 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private static javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelNombre;
+    private javax.swing.JMenuItem mantTarjEmbqMenuItem;
     // End of variables declaration//GEN-END:variables
 }
