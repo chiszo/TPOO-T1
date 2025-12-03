@@ -4,10 +4,14 @@
  */
 package com.airpot.airport.t1poo.interfaces;
 
+import com.airpot.airport.t1poo.entidades.Puerta;
+import java.util.ArrayList;
+
 /**
  *
  * @author RIPCONCIV
  */
 public interface PuertaInterfazGestionDAO {
+    public ArrayList<Puerta> listarPuerta();
     
 }

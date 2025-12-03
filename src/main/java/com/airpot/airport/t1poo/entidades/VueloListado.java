@@ -1,25 +1,31 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.airpot.airport.t1poo.entidades;
 
-
-public class Vuelo {
-    
+/**
+ *
+ * @author RIPCONCIV
+ */
+public class VueloListado {
     private int idvuelo;
     private String origen;
     private String destino;
     private int capacidad;
     private int ocupados = 0;
-    private int idpuerta;  // NUEVO
+    private String puerta;  // NUEVO
 
-    public Vuelo() {}
+    public VueloListado() {
+    }
 
-    public Vuelo(int idvuelo, String origen, String destino, int capacidad, int ocupados,int idpuerta) {
+    public VueloListado(int idvuelo, String origen, String destino, int capacidad,int ocupados, String puerta) {
         this.idvuelo = idvuelo;
         this.origen = origen;
         this.destino = destino;
         this.capacidad = capacidad;
-        this.ocupados = ocupados;
-        this.idpuerta = idpuerta;
+        this.ocupados=ocupados;
+        this.puerta = puerta;
     }
 
     public int getIdvuelo() {
@@ -62,18 +68,16 @@ public class Vuelo {
         this.ocupados = ocupados;
     }
 
-    public int getIdpuerta() {
-        return idpuerta;
+    public String getPuerta() {
+        return puerta;
     }
 
-    public void setIdpuerta(int idpuerta) {
-        this.idpuerta = idpuerta;
+    public void setPuerta(String puerta) {
+        this.puerta = puerta;
     }
 
     @Override
     public String toString() {
-        return "Vuelo{" + "idvuelo=" + idvuelo + ", origen=" + origen + ", destino=" + destino + ", capacidad=" + capacidad + ", ocupados=" + ocupados + ", idpuerta=" + idpuerta + '}';
+        return "VueloListado{" + "idvuelo=" + idvuelo + ", origen=" + origen + ", destino=" + destino + ", capacidad=" + capacidad + ", ocupados=" + ocupados + ", puerta=" + puerta + '}';
     }
-
-
 }
