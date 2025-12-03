@@ -45,6 +45,7 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         MnMantenimientoPasajero = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         mantTarjEmbqMenuItem = new javax.swing.JMenuItem();
@@ -104,6 +105,16 @@ public class MenuMain extends javax.swing.JFrame {
         jMenu3.setBackground(new java.awt.Color(0, 0, 0));
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Vuelos");
+
+        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem2.setText("Mantenimiento");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(0, 0, 0));
@@ -153,6 +164,15 @@ public class MenuMain extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_mantTarjEmbqMenuItemActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        java.awt.EventQueue.invokeLater(() -> {
+            MantenimientoVuelo mante = new MantenimientoVuelo();
+            mante.setLocationRelativeTo(this);
+            mante.setVisible(true);
+                    }
+        );
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +213,7 @@ public class MenuMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private static javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelNombre;

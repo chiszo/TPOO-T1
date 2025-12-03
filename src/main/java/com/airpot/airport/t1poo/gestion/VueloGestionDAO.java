@@ -162,7 +162,7 @@ public class VueloGestionDAO implements VueloInterfazGestionDAO{
                     rs.getString("destino"),
                     rs.getInt("capacidad"),
                     rs.getInt("ocupados"),
-                    rs.getInt("puerta"))
+                    rs.getInt("idpuerta"))
                 );
             }
         } catch (SQLException e) {
@@ -189,7 +189,7 @@ public class VueloGestionDAO implements VueloInterfazGestionDAO{
                     rs.getString("destino"),
                     rs.getInt("capacidad"),
                     rs.getInt("ocupados"),
-                    rs.getString("puerta"))
+                    rs.getString("estado"))
                 );
             }
         } catch (SQLException e) {

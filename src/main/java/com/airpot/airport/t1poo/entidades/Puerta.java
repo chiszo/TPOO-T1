@@ -32,6 +32,6 @@ public class Puerta {
 
     @Override
     public String toString() {
-        return "Puerta{" + "idpuerta=" + idpuerta + ", estado=" + estado + '}';
+        return estado;
     }
 }
