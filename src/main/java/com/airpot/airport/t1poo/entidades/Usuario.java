@@ -3,18 +3,37 @@ package com.airpot.airport.t1poo.entidades;
 
 
 public class Usuario {
+    private int id_usuario;
     private String username;
     private String password;
-    private String rol;
     private String nombre;
+    private boolean activo;
 
     public Usuario() {}
 
-    public Usuario(String username, String password, String rol, String nombre) {
+    public Usuario(int id_usuario, String username, String password, String nombre, boolean activo) {
+        this.id_usuario=id_usuario;
         this.username = username;
         this.password = password;
-        this.rol = rol;
         this.nombre=nombre;
+        this.activo=activo;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+    
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public String getNombre() {
@@ -31,11 +50,10 @@ public class Usuario {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public String getRol() { return rol; }
-    public void setRol(String rol) { this.rol = rol; }
-
     @Override
     public String toString() {
-        return "Usuario{" + "username=" + username + ", password=" + password + ", rol=" + rol + ", nombre=" + nombre + '}';
+        return "Usuario{" + "username=" + username + ", password=" + password + ", nombre=" + nombre + ", activo=" + activo + '}';
     }
+
+
 }

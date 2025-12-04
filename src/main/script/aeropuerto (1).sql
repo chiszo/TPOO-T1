@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2025 a las 02:17:01
+-- Tiempo de generación: 04-12-2025 a las 02:36:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -127,8 +127,8 @@ CREATE TABLE `puerta` (
 --
 
 INSERT INTO `puerta` (`idpuerta`, `estado`) VALUES
-(1, 'disponible'),
-(2, 'no disponible');
+(1, 'A'),
+(2, 'B');
 
 -- --------------------------------------------------------
 
@@ -191,26 +191,26 @@ INSERT INTO `tipodocumento` (`idtipodocumento`, `descripcion`) VALUES
 CREATE TABLE `usuario` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `activo` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`username`, `password`, `rol`, `nombre`, `id_usuario`) VALUES
-('admin', 'admin123', 'Administrador', 'Administrador', 1),
-('anatorres', 'passana', 'Cliente', 'Ana', 2),
-('carlosr', 'passcarlos', 'Cliente', 'Carlos', 3),
-('diegom', 'passdiego', 'Cliente', 'Diego', 4),
-('juanp', 'passjuan', 'Cliente', 'Juan', 5),
-('lauraf', 'passlaura', 'Cliente', 'Laura', 6),
-('luisg', 'passluis', 'Cliente', 'Luis', 7),
-('marial', 'passmaria', 'Cliente', 'Maria', 8),
-('pedros', 'passpedro', 'Cliente', 'Pedro', 9),
-('sofiac', 'passsofia', 'Cliente', 'Sofia', 10);
+INSERT INTO `usuario` (`username`, `password`, `nombre`, `id_usuario`, `activo`) VALUES
+('admin', 'admin123', 'Administrador', 1, b'1'),
+('anatorres', 'passana', 'Ana', 2, b'1'),
+('carlosr', 'passcarlos', 'Carlos', 3, b'1'),
+('diegom', 'passdiego', 'Diego', 4, b'0'),
+('juanp', 'passjuan', 'Juan', 5, b'0'),
+('lauraf', 'passlaura', 'Laura', 6, b'1'),
+('luisg', 'passluis', 'Luis', 7, b'0'),
+('marial', 'passmaria', 'Maria', 8, b'0'),
+('pedros', 'passpedro', 'Pedro', 9, b'1'),
+('sofiac', 'passsofia', 'Sofia', 10, b'0');
 
 -- --------------------------------------------------------
 
