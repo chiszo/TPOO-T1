@@ -3,15 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.airpot.airport.t1poo.UI;
-import com.airpot.airport.t1poo.entidades.PasajeroListado;
+
+import javax.swing.ImageIcon;
+import com.airpot.airport.t1poo.entidades.TipoDocumento;
+import com.airpot.airport.t1poo.gestion.VueloGestionDAO;
+import com.airpot.airport.t1poo.gestion.PuertaGestionDAO;
+import com.airpot.airport.t1poo.entidades.Vuelo;
 import com.airpot.airport.t1poo.entidades.Puerta;
 import com.airpot.airport.t1poo.entidades.VueloListado;
-import com.airpot.airport.t1poo.gestion.PuertaGestionDAO;
-import com.airpot.airport.t1poo.gestion.VueloGestionDAO;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author RIPCONCIV
@@ -19,10 +21,11 @@ import javax.swing.table.DefaultTableModel;
 public class MantenimientoVuelo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MantenimientoVuelo.class.getName());
+    
     private VueloGestionDAO vueloDAO = new VueloGestionDAO();
     private PuertaGestionDAO puertaDAO = new PuertaGestionDAO();
     /**
-     * Creates new form MantenimientoVuelo
+     * Creates new form MantenimientoPasajero
      */
     public MantenimientoVuelo() {
         initComponents();
@@ -32,29 +35,12 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
         txtIdVuelo.setVisible(false);
         this.setResizable(false);
     }
-    
-    public void cargarTablaVuelo() {
-
-    String columnas[] = {"ID", "Origen","Destino" ,"Capacidad", "Ocupados","Disponibilidad"};
-       DefaultTableModel modelo = new DefaultTableModel(null, columnas);
-
-       ArrayList<VueloListado> lista = vueloDAO.listarVuelos2();
-
-    for (VueloListado p : lista) {
-        Object fila[] = {
-            p.getIdvuelo(),
-            p.getOrigen(),
-            p.getDestino(),
-            p.getCapacidad(),
-            p.getOcupados(),
-            p.getPuerta()
-        };
-        modelo.addRow(fila);
+     private void cargarPuerta() {
+      cboPuerta.removeAllItems();
+        for (Puerta m : puertaDAO.listarPuerta()) {
+            cboPuerta.addItem(m);
+        }
     }
-
-    jtablevuelos.setModel(modelo);
-} 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,30 +50,43 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtablevuelos = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        txtDestino = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaVuelos = new javax.swing.JTable();
+        txtOcupado = new javax.swing.JTextField();
+        txtOrigen = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        cboVuelo = new javax.swing.JComboBox<>();
-        txtOcupados = new javax.swing.JTextField();
-        txtCapacidad = new javax.swing.JTextField();
-        txtDestino = new javax.swing.JTextField();
-        txtOrigen = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        cboPuerta = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         txtIdVuelo = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
+        txtCapacidad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mantenimiento Pasajeros");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, 40));
 
-        jtablevuelos.setModel(new javax.swing.table.DefaultTableModel(
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar_1.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+
+        tablaVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -98,45 +97,31 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jtablevuelos);
+        tablaVuelos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVuelosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaVuelos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 10, 670, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 570, 430));
+        jPanel1.add(txtOcupado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 140, 40));
+        jPanel1.add(txtOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 140, 40));
 
         jLabel1.setText("Origen");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         jLabel2.setText("Destino");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel3.setText("Capacidad");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         jLabel4.setText("Ocupados");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        jLabel5.setText("Puerta");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-
-        cboVuelo.setModel(new javax.swing.DefaultComboBoxModel<>());
-        cboVuelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboVueloActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cboVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 140, 40));
-        jPanel1.add(txtOcupados, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 140, 40));
-        jPanel1.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, 40));
-        jPanel1.add(txtDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 140, 40));
-        jPanel1.add(txtOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 140, 40));
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar_1.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 110, 40));
+        cboPuerta.setModel(new javax.swing.DefaultComboBoxModel<>());
+        jPanel1.add(cboPuerta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 140, 40));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -145,7 +130,11 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 120, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+
+        txtIdVuelo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIdVuelo.setFocusable(false);
+        jPanel1.add(txtIdVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -153,56 +142,130 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
-        jPanel1.add(txtIdVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 30, -1));
+        jPanel1.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 140, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1095, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel5.setText("Puerta");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+
+        jScrollPane1.setViewportView(jPanel1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboVueloActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        int id = Integer.parseInt(txtIdVuelo.getText().trim());
+        String origen = txtOrigen.getText().trim();
+        String destino = txtDestino.getText().trim();
+        int capacidad = Integer.parseInt(txtCapacidad.getText().trim());
+        int ocupado = Integer.parseInt(txtOcupado.getText().trim());
+        Puerta puertacb = (Puerta) cboPuerta.getSelectedItem();
+        int idpuerta = puertacb.getIdpuerta();
+        if(id==0){
+            // 2. Validaciones
+    if (origen.isEmpty() || destino.isEmpty() || capacidad==0) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    // 3. Crear objeto pasajero
+        Vuelo p = new Vuelo();
+        p.setOrigen(origen);
+        p.setDestino(destino);
+        p.setCapacidad(capacidad);
+        p.setOcupados(ocupado);
+        p.setIdpuerta(idpuerta);
+
+    // 4. Llamar al DAO para guardar
+        int ok = vueloDAO.registrar(p);
+
+    // 5. Resultado
+        if (ok!=0) {
+        JOptionPane.showMessageDialog(this, "Vuelo registrado correctamente.");
+        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
+        limpiarCampos();        // limpia los campos
+        } else {
+        JOptionPane.showMessageDialog(this, "Error al guardar vuelo.");
+        }
+        cargarTablaVuelo();
+        }
+        else {
+                // 2. Validaciones
+    if (origen.isEmpty() || destino.isEmpty() || capacidad==0) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+        return;
+    }
+
+    // 3. Crear objeto pasajero
+         Vuelo p = new Vuelo();
+        p.setOrigen(origen);
+        p.setDestino(destino);
+        p.setCapacidad(capacidad);
+        p.setOcupados(ocupado);
+        p.setIdpuerta(idpuerta);
+        p.setIdvuelo(id);
+
+    // 4. Llamar al DAO para guardar
+        int ok = vueloDAO.actualizar(p);
+
+    // 5. Resultado
+        if (ok!=0) {
+        JOptionPane.showMessageDialog(this, "Vuelo actualizado correctamente.");
+        //cargarTablaPasajeros(); // refresca la tabla si ya la tienes
+        limpiarCampos();        // limpia los campos
+        } else {
+        JOptionPane.showMessageDialog(this, "Error al actualizar al vuelo.");
+        }
+        cargarTablaVuelo();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void tablaVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVuelosMouseClicked
+      int fila = tablaVuelos.getSelectedRow();
+        if (fila >= 0) {
+            int id = Integer.parseInt(tablaVuelos.getValueAt(fila, 0).toString());
+            Vuelo vuelo=vueloDAO.buscarVuelo(id);
+            txtIdVuelo.setText(String.valueOf(vuelo.getIdvuelo()));
+            txtOrigen.setText(vuelo.getOrigen());
+            txtDestino.setText(vuelo.getDestino());
+            txtCapacidad.setText(String.valueOf(vuelo.getCapacidad()));
+            txtOcupado.setText(String.valueOf(vuelo.getOcupados()));
+            cboPuerta.setSelectedIndex(
+                    vuelo.getIdpuerta()-1
+                    );
+        }
+    }//GEN-LAST:event_tablaVuelosMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cboVueloActionPerformed
+         int id = Integer.parseInt(txtIdVuelo.getText().trim());
+         if (id==0){
+             JOptionPane.showMessageDialog(this, "Seleccione un vuelo");
+         } else {
+             int opcion=JOptionPane.showConfirmDialog(null, "¿Desea eliminar este vuelo?", "Confirmación", JOptionPane.YES_NO_OPTION,  JOptionPane.QUESTION_MESSAGE);
+             if (opcion==JOptionPane.YES_OPTION){
+                vueloDAO.eliminar(id);
+                JOptionPane.showMessageDialog(this, "vuelo eliminado correctamente.");
+                cargarTablaVuelo();
+                limpiarCampos();
+             }
+             
+         }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
-    
-    private void cargarPuerta() {
-    cboVuelo.removeAllItems();
-
-
-    for (Puerta m : puertaDAO.listarPuerta()) {
-        cboVuelo.addItem(m);
-        }
-    }
-    
     private void limpiarCampos() {
     txtIdVuelo.setText("0");
-    txtCapacidad.setText("");
-    txtDestino.setText("");
-    txtOcupados.setText("");
     txtOrigen.setText("");
-    cboVuelo.setSelectedIndex(0);
+    txtDestino.setText("");
+    txtOcupado.setText("");
+    cboPuerta.setSelectedIndex(0);
 }
+
     /**
      * @param args the command line arguments
      */
@@ -232,7 +295,7 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<Puerta> cboVuelo;
+    private javax.swing.JComboBox<Puerta> cboPuerta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -240,11 +303,34 @@ public class MantenimientoVuelo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtablevuelos;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaVuelos;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtIdVuelo;
-    private javax.swing.JTextField txtOcupados;
+    private javax.swing.JTextField txtOcupado;
     private javax.swing.JTextField txtOrigen;
     // End of variables declaration//GEN-END:variables
+
+ public void cargarTablaVuelo() {
+
+    String columnas[] = {"ID", "Origen","Destino" ,"Capacidad", "Ocupados","Puerta"};
+       DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+       ArrayList<VueloListado> lista = vueloDAO.listarVuelos2();
+
+    for (VueloListado p : lista) {
+        Object fila[] = {
+            p.getIdvuelo(),
+            p.getOrigen(),
+            p.getDestino(),
+            p.getCapacidad(),
+            p.getOcupados(),
+            p.getPuerta()
+        };
+        modelo.addRow(fila);
+    }
+
+    tablaVuelos.setModel(modelo);
+} 
 }

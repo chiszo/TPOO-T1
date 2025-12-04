@@ -7,6 +7,7 @@ D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\TarjetaEmb
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\TipoDocumento.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Usuario.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\Vuelo.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\entidades\VueloListado.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\gestion\EquipajeGestionDAO.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\gestion\PasajeroGestionDAO.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\gestion\PuertaGestionDAO.java
@@ -24,5 +25,6 @@ D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\interfaces\VueloInte
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\login.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\MantenimientoPasajero.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\MantenimientoTarjEmbq.java
+D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\MantenimientoVuelo.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\UI\MenuMain.java
 D:\tpoo\proy\TPOO-T1\src\main\java\com\airpot\airport\t1poo\utils\Conexion.java
