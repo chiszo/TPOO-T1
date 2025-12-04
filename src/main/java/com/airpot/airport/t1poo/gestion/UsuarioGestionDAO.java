@@ -35,10 +35,11 @@ public class UsuarioGestionDAO implements UsuarioInterfazGestionDAO{
 
         if (res.next()) {
             usuario = new Usuario(
+                res.getInt("id_usuario"),
                 res.getString("username"),
                 res.getString("password"),
-                res.getString("rol"),
-                res.getString("nombre")
+                res.getString("nombre"),
+                res.getBoolean("estado")
             );
         }
 
