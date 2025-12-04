@@ -25,7 +25,7 @@ public class UsuarioGestionDAO implements UsuarioInterfazGestionDAO{
 
         try {
             con = Conexion.getConexion();
-            String sql = "SELECT username, password, rol ,nombre FROM usuario WHERE username = ? AND password = ?";
+            String sql = "SELECT id_usuario,username, password ,nombre, activo FROM usuario WHERE username = ? AND password = ?";
 
             pstm = con.prepareStatement(sql);
             pstm.setString(1, user);
@@ -39,7 +39,7 @@ public class UsuarioGestionDAO implements UsuarioInterfazGestionDAO{
                 res.getString("username"),
                 res.getString("password"),
                 res.getString("nombre"),
-                res.getBoolean("estado")
+                res.getBoolean("activo")
             );
         }
 
