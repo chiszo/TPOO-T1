@@ -20,7 +20,7 @@ public class Conexion {
         Connection cn = null;
         String url = "jdbc:mysql://localhost:3306/aeropuerto";
         String user = "root";
-        String pass = "";
+        String pass = "admin";
         
         try {
             cn = DriverManager.getConnection(url, user, pass);

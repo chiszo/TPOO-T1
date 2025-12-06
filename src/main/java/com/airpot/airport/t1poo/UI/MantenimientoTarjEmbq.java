@@ -32,8 +32,8 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         cargarTabla();
-        //editarBtn.setVisible(false);
         configurarListenerEditarBtn();
+        IdTarjEmbqTxt.setVisible(false);
     }
 
     /**
@@ -61,16 +61,27 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         eliminarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Numero Tarjeta Embarque:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 36, -1, -1));
 
         jLabel2.setText("ID Pasajero:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 80, -1, -1));
 
         jLabel3.setText("ID Puerta");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 124, -1, -1));
 
         jLabel4.setText("Numero Asiento:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 168, -1, -1));
+        jPanel1.add(IdTarjEmbqTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 182, -1));
+        jPanel1.add(IdPasajeroTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 75, 250, -1));
 
         IdPuertaTxt.addActionListener(this::IdPuertaTxtActionPerformed);
+        jPanel1.add(IdPuertaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 250, -1));
+        jPanel1.add(NroAsientoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 230, -1));
 
         tarjEmbqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,91 +116,21 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tarjEmbqTable);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 6, 452, 275));
+
         guardarBtn.setText("Guardar");
         guardarBtn.addActionListener(this::guardarBtnActionPerformed);
+        jPanel1.add(guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 207, -1, -1));
 
         editarBtn.setText("Editar");
         editarBtn.addActionListener(this::editarBtnActionPerformed);
+        jPanel1.add(editarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 207, -1, -1));
 
         eliminarBtn.setText("Eliminar");
         eliminarBtn.addActionListener(this::eliminarBtnActionPerformed);
+        jPanel1.add(eliminarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 207, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(NroAsientoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(IdTarjEmbqTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(IdPuertaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(IdPasajeroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(guardarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminarBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(IdTarjEmbqTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(IdPasajeroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(IdPuertaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(NroAsientoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guardarBtn)
-                            .addComponent(editarBtn)
-                            .addComponent(eliminarBtn))))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,7 +141,15 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         int idPasajero = Integer.parseInt(IdPasajeroTxt.getText().trim());
         int idPuerta = Integer.parseInt(IdPuertaTxt.getText().trim());
         String nroAsiento = NroAsientoTxt.getText().trim();
-        trjDao.agregarTarjetaEmbarque(idTarjeta, idPasajero, idPuerta, nroAsiento);
+        
+        if(!verificarExistenciaIdTarjetaEmbarque(idTarjeta)){
+            trjDao.insertData(idPasajero, nroAsiento, idPuerta);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error: IdTarjeta de Embarque ya esta registrado","ERROR_REGISTRO",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //trjDao.agregarTarjetaEmbarque(idTarjeta, idPasajero, idPuerta, nroAsiento);
         cargarTabla();
     }//GEN-LAST:event_guardarBtnActionPerformed
 
@@ -238,6 +187,7 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
 
     private void editarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBtnActionPerformed
         // TODO add your handling code here:
+        IdTarjEmbqTxt.setVisible(true);
         int fila = tarjEmbqTable.getSelectedRow();
         if(fila!=-1){
             IdTarjEmbqTxt.setText(tarjEmbqTable.getValueAt(fila, 0).toString());
@@ -254,9 +204,7 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         // TODO add your handling code here:
         int idTrjEmbq = Integer.parseInt(IdTarjEmbqTxt.getText());
-        boolean verificador = trjDao.eliminarRegistroTarjetaEmbq(idTrjEmbq);
-        if(verificador) JOptionPane.showMessageDialog(null,"Tarjeta de embarque eliminado","BORRADO EXITOSO",JOptionPane.INFORMATION_MESSAGE);
-        else JOptionPane.showMessageDialog(null,"Tarjeta de embarque No eliminado","BORRADO FALLIDO",JOptionPane.ERROR_MESSAGE);
+        trjDao.deleteData(idTrjEmbq);
         cargarTabla();
     }//GEN-LAST:event_eliminarBtnActionPerformed
 
@@ -289,7 +237,7 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tarjEmbqTable.getModel();
         model.setRowCount(0); //Limpiar datos
         
-        ArrayList<TarjetaEmbarque>tarjEmbqData = trjDao.getData();//Obtenemos los datos de la clase Entity
+        ArrayList<TarjetaEmbarque>tarjEmbqData = trjDao.getDatosTarjetaEmbarque();//Obtenemos los datos de la clase Entity
         
         for(TarjetaEmbarque t : tarjEmbqData){
             model.addRow(new Object[]{
@@ -349,6 +297,7 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent event){
                 if(!tarjEmbqTable.isFocusOwner()){
                     actualizarVisibilidadBoton();
+                    IdTarjEmbqTxt.setVisible(false);
                 }
             }
         });
@@ -359,6 +308,17 @@ public class MantenimientoTarjEmbq extends javax.swing.JFrame {
         boolean tablaTieneFoco = tarjEmbqTable.isFocusOwner();
         
         editarBtn.setVisible(tieneSeleccion && tablaTieneFoco);
+        //IdTarjEmbqTxt.setVisible(tieneSeleccion && tablaTieneFoco);
+    }
+    
+    public boolean verificarExistenciaIdTarjetaEmbarque(int idtarjetaEmbarque){
+        ArrayList<TarjetaEmbarque> datos = trjDao.getDatosTarjetaEmbarque();
+        for(TarjetaEmbarque t : datos){
+            if(t.getIdtarjetaEmbarque()== idtarjetaEmbarque){
+             return true;
+            }
+        }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

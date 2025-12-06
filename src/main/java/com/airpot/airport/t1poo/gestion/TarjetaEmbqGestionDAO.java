@@ -6,6 +6,12 @@ package com.airpot.airport.t1poo.gestion;
 
 
 import com.airpot.airport.t1poo.entidades.TarjetaEmbarque;
+import com.airpot.airport.t1poo.interfaces.TarjetaInterfazGestionDAO;
+import com.airpot.airport.t1poo.utils.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -13,7 +19,7 @@ import java.util.stream.Collectors;
  *
  * @author RIPCONCIV
  */
-public class TarjetaEmbqGestionDAO {
+public class TarjetaEmbqGestionDAO implements TarjetaInterfazGestionDAO {
     private ArrayList<TarjetaEmbarque> tarjEmbqData;
     
     public TarjetaEmbqGestionDAO(){
@@ -21,12 +27,96 @@ public class TarjetaEmbqGestionDAO {
          cargarDatos();
     }
     
-    private void cargarDatos(){
-        tarjEmbqData.add(new TarjetaEmbarque(01,01,01,"A01"));
+    @Override
+    public ArrayList<TarjetaEmbarque> getDatosTarjetaEmbarque() {
+        ArrayList<TarjetaEmbarque> listaTrjEmb = new ArrayList<>();
+        TarjetaEmbarque trjEmbq = null;
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet res = null;
+
+        try {
+            con = Conexion.getConexion();
+            String sql = "SELECT idtarjetaEmbarque,idpasajero, idpuerta, asiento from TarjetaEmbarque";
+            pstm = con.prepareStatement(sql);
+            res = pstm.executeQuery();
+            
+            while(res.next()){
+                listaTrjEmb.add(new TarjetaEmbarque(
+                        res.getInt("idtarjetaEmbarque"),
+                        res.getInt("idpasajero"),
+                        res.getInt("idpuerta"),
+                        res.getString("asiento")
+                        
+                ));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener datos para la tabla Tarjeta Embarque: " + e.getMessage());
+
+        } finally {
+            try {
+                if (res != null) res.close();
+                if (pstm != null) pstm.close();
+                if (con != null) con.close();
+
+            } catch (SQLException e2) {
+                System.out.println(">>> Error al cerrar la BD: " + e2.getMessage());
+            }
+        }
+        
+        return listaTrjEmb;
     }
     
-    public ArrayList<TarjetaEmbarque> getData(){
-        return tarjEmbqData;
+    @Override
+    public void insertData(int idpasajero,String asiento, int idpuerta){
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet res = null;
+        
+        try{
+            con = Conexion.getConexion();
+            String sql = "INSERT INTO TarjetaEmbarque (idpasajero, asiento, idpuerta) VALUES (?, ?, ?)";
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1, idpasajero);
+            pstm.setString(2, asiento);
+            pstm.setInt(3, idpuerta);
+            
+            int filasAfectadas = pstm.executeUpdate();
+            
+            System.out.println(filasAfectadas+" Filas afectadas correctamente");
+        }
+        catch(Exception e){
+            System.out.println("Error al insertar datos para la tabla Tarjeta Embarque: " + e.getMessage());
+        }
+    }
+    
+    @Override
+    public void deleteData(int idtarjetaEmbarque){
+        try{
+            Connection con = Conexion.getConexion();
+            String sql = "DELETE FROM TarjetaEmbarque WHERE idtarjetaEmbarque = ?";
+            PreparedStatement pstm = con.prepareStatement(sql);
+
+            pstm.setInt(1, idtarjetaEmbarque);
+
+            int fila = pstm.executeUpdate();
+            
+            System.out.println(fila+" Filas afectadas correctamente");
+        }
+        catch(Exception e){
+            System.out.println("Error al eliminar datos para la tabla Tarjeta Embarque: " + e.getMessage());
+        }
+        
+    }
+    
+    private void cargarDatos(){
+        getData();
+    }
+    
+    private ArrayList<TarjetaEmbarque> getData(){
+        return getDatosTarjetaEmbarque();
     }
     
     public void agregarTarjetaEmbarque(int idTarjetaEmbarque, int idPasajero, int idPuerta, String asiento){
@@ -57,6 +147,8 @@ public class TarjetaEmbqGestionDAO {
         
     }
     
+    
+    
     public boolean eliminarRegistroTarjetaEmbq(int idTrjEmbq){
         //tarjEmbqData=tarjEmbqData.stream().filter(t -> t.getIdtarjetaEmbarque()!=te.getIdtarjetaEmbarque()).collect(Collectors.toList());
         if(verificarTarjetaEmbarque(idTrjEmbq)){
@@ -65,4 +157,8 @@ public class TarjetaEmbqGestionDAO {
         }
         return false;
     }
+    
+    
+
+    
 }
