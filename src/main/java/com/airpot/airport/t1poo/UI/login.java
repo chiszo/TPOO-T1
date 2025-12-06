@@ -151,10 +151,10 @@ private void validarAcceso() {
     }
 
     // Llama al DAO
-    Usuario usuarioEncontrado = guserDAO.inicioSesion(user, clave);
+    //Usuario usuarioEncontrado = guserDAO.inicioSesion(user, clave);
     
     //Usuario colocado por Jair para facilitar el acceso sin necesidad de con DB MySQL!
-    //Usuario usuarioEncontrado = new Usuario("admin","admin","user","admin");
+    Usuario usuarioEncontrado = new Usuario(1234,"admin","user","admin",true);
 
     if (usuarioEncontrado != null) {
         // Acceso correcto

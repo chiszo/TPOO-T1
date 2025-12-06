@@ -10,6 +10,8 @@ import com.airpot.airport.t1poo.gestion.PasajeroGestionDAO;
 import com.airpot.airport.t1poo.gestion.TipoDocumentoGestionDAO;
 import com.airpot.airport.t1poo.entidades.Pasajero;
 import com.airpot.airport.t1poo.entidades.PasajeroListado;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -66,6 +68,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         txtIdPasajero = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
+        mensajeErrorNombreLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Pasajeros");
@@ -130,7 +133,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
-        txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIdPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtIdPasajero.setFocusable(false);
         jPanel1.add(txtIdPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
@@ -141,6 +144,9 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 30, -1));
+
+        mensajeErrorNombreLbl.setText("Solo se permiten letras!");
+        jPanel1.add(mensajeErrorNombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -249,12 +255,23 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
     private void limpiarCampos() {
-    txtIdPasajero.setText("0");
-    txtNombre.setText("");
-    txtDocumento.setText("");
-    txtTelefono.setText("");
-    cboTipoDocumento.setSelectedIndex(0);
-}
+        txtIdPasajero.setText("0");
+        txtNombre.setText("");
+        txtDocumento.setText("");
+        txtTelefono.setText("");
+        cboTipoDocumento.setSelectedIndex(0);
+    }
+    
+    private void correrValidaciones(){
+        txtNombre.addFocusListener(new FocusAdapter(){
+            public void focusLost(FocusEvent e){
+                if(!txtNombre.getText().matches("[a-zA-Z]*")){
+                    JOptionPane.showMessageDialog(null,"Solo se permiten numeros","ERROR_COMPATIBILIDAD",JOptionPane.ERROR_MESSAGE);
+                    txtNombre.requestFocus();
+                }
+            }
+        });
+    }
 
     /**
      * @param args the command line arguments
@@ -293,6 +310,7 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel mensajeErrorNombreLbl;
     private javax.swing.JTable tablaPasajeros;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtIdPasajero;
@@ -305,7 +323,8 @@ public class MantenimientoPasajero extends javax.swing.JFrame {
     String columnas[] = {"ID", "Nombre","Tipo-Documento" ,"Documento", "Teléfono"};
        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
 
-       ArrayList<PasajeroListado> lista = pasajeroDAO.listarPasajeros2();
+       //ArrayList<PasajeroListado> lista = pasajeroDAO.listarPasajeros2();
+       ArrayList<PasajeroListado> lista = new ArrayList<>();
 
     for (PasajeroListado p : lista) {
         Object fila[] = {
